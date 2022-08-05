@@ -1,11 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: runners.RunnerClass
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 27.096 s <<< FAILURE! - in runners.RunnerClass
-Adding the employees in HRMS Application.Adding multiple employees from excel file  Time elapsed: 25.252 s  <<< ERROR!
-java.lang.NullPointerException
-	at utils.ExcelReader.getRowCount(ExcelReader.java:41)
-	at utils.ExcelReader.excelIntoMap(ExcelReader.java:60)
-	at steps.AddEmployeeSteps.user_add_multiple_employees_from_excel_file_using_sheet_and_verify_the_user_added(AddEmployeeSteps.java:86)
-	at ✽.user add multiple employees from excel file using "EmployeeData" sheet and verify the user added(file:///C:/Users/mrd13/IdeaProjects/CucumberFrameworkBatch12/src/test/resources/features/AddEmployee.feature:47)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 41.746 s - in runners.RunnerClass

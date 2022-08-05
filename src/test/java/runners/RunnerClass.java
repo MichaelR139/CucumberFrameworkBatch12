@@ -20,11 +20,11 @@ import org.junit.runner.RunWith;
         dryRun = false,
 
         //it means the console output for cucumber test is having irrelevant information
-        // when we set it to true, it simply remov@datatablees all the irrelevant information
+        // when we set it to true, it simply removes all the irrelevant information
         monochrome = true,
-        tags="@datatable",
+        tags="@excel",
         plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json",
-        "rerun:target/failed.txt"
+                "rerun:target/failed.txt"
 
         }
 )

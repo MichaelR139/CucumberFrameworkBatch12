@@ -1,7 +1,5 @@
 Feature: Adding the employees in HRMS Application
 
-
-
   Background:
     When user enters valid admin credentials
     And user clicks on login button
@@ -22,7 +20,7 @@ Feature: Adding the employees in HRMS Application
     And user clicks on save button
     Then employee added successfully
 
-  @123
+  @123 @test123
   Scenario Outline: Adding multiple employees
     And user provides "<firstName>" "<middleName>" and "<lastName>"
     And user clicks on save button
@@ -46,3 +44,11 @@ Feature: Adding the employees in HRMS Application
   Scenario: Adding multiple employees from excel file
     When user add multiple employees from excel file using "EmployeeData" sheet and verify the user added
 
+
+  @123
+  Scenario: Adding one employee using cucumber feature file
+    And user enters "Taylor" "Shakira" and "Swift"
+    And user clicks on save button
+    And user Grab the employee id
+    And user query the database for same employee id
+    Then user verifies the result

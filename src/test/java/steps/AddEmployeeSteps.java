@@ -1,14 +1,13 @@
 package steps;
 
-
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.it.Ma;
-import org.bouncycastle.crypto.agreement.kdf.ConcatenationKDFGenerator;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.AddEmployeePage;
 import utils.CommonMethods;
 import utils.Constants;
 import utils.ExcelReader;
@@ -18,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
+    String empId;
+    String firstName;
 
     @When("user clicks on PIM option")
     public void user_clicks_on_pim_option() {
@@ -130,4 +131,20 @@ public class AddEmployeeSteps extends CommonMethods {
         }
     }
 
+    @And("user Grab the employee id")
+    public void userGrabTheEmployeeId() {
+        //AddEmployeePage addEmployeePage =new AddEmployeePage();
+        empId=addEmployeePage.empIDLocator.getAttribute("value");
+        firstName=addEmployeePage.firstNameField.getAttribute("value");
+
+    }
+
+    @And("user query the database for same employee id")
+    public void userQueryTheDatabaseForSameEmployeeId() {
+
+    }
+
+    @Then("user verifies the result")
+    public void userVerifiesTheResult() {
+    }
 }

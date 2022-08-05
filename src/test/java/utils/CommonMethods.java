@@ -4,9 +4,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.PageInitializers;
 
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import java.util.concurrent.TimeUnit;
@@ -26,10 +25,22 @@ public class CommonMethods extends PageInitializers {
     public void openBrowserAndLauchApplication(){
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")){
+            // for jenkins
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setHeadless(true);
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(chromeOptions);
+               /* WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();*/
+                break;
+            /*
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
+
+             */
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
@@ -79,12 +90,13 @@ public class CommonMethods extends PageInitializers {
         System.out.println(element.isDisplayed());
     }
     public static void getText(WebElement element){
+
         System.out.println(element.getText());
     }
     public  static String getMessage(WebElement element){
+
         return  element.getText();
     }
-
     public static byte[] takeScreenshot(String fileName){
         TakesScreenshot ts = (TakesScreenshot) driver;
         byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
@@ -106,50 +118,6 @@ public class CommonMethods extends PageInitializers {
         return sdf.format(date);
     }
 
-
-
-    public static void switchToFrame(WebElement element) {
-        try {
-            driver.switchTo().frame(element);
-        }catch(NoSuchFrameException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void switchToFrame(int index) {
-        try {
-            driver.switchTo().frame(index);
-        }catch(NoSuchFrameException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void switchToFrame(String nameOrId) {
-        try {
-            driver.switchTo().frame(nameOrId);
-        }catch(NoSuchFrameException e){
-            e.printStackTrace();
-        }
-        driver.switchTo().frame(nameOrId);
-    }
-
-    public static void selectDdValue(WebElement element, String textToSelect) {
-        Select select = new Select(element);
-        List<WebElement> options = select.getOptions();
-        for (WebElement option : options){
-            if(option.getText().equals(textToSelect)) {
-                select.selectByVisibleText(textToSelect);
-                break;
-            }
-        }
-    }
-
-    public static void selectDdValue(WebElement element, int index) {
-        Select select = new Select(element);
-       int size = select.getOptions().size();
-       if(size>index){select.selectByIndex(index);
-        }
-    }
 
 
 
